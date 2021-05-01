@@ -1,8 +1,14 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-  </div>
-  <router-view/>
+  <el-container>
+    <el-header>
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+    </div>
+    </el-header>
+    <el-main>
+    <router-view/>
+    </el-main>
+  </el-container>
 </template>
 
 <style lang="scss">
@@ -13,17 +19,9 @@
   text-align: center;
   color: #2c3e50;
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.el-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 </style>
