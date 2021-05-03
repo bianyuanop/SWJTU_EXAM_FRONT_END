@@ -4,6 +4,10 @@
     <Fill :info="info" v-for="info in fills" :key="info"/>
     <Fix :info="info" v-for="info in fixs" :key="info"/>
     <Coding :info="info" v-for="info in codings" :key="info"/>
+
+    <div class="tail-btn">
+        <el-button @click="commit">提交</el-button>
+    </div>
 </template>
 
 <script>
@@ -45,7 +49,10 @@ export default {
                 if(exams[i].id == id) return exams[i];
             }
             return null;
-        }   
+        },
+        commit: function() {
+            console.log("Committing...");
+        }
     },
     computed: {
         percentage() {
@@ -73,5 +80,13 @@ export default {
 <style scoped>
 .box-card {
     margin-top: 20px;
+}
+
+
+.tail-btn {
+    margin-top: 20px;
+}
+    .el-button {
+    float: right;
 }
 </style>

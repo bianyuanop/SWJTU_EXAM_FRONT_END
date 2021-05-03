@@ -29,7 +29,8 @@ export default {
     methods: {
         run: function() {
             this.runningResul = "Running";
-            $('.el-alert').show();
+            $('.res').show();
+            $('.res')[0].innerText = this.code;
             console.log("Running.");
         },
     },
@@ -91,5 +92,11 @@ export default {
 .btn-group {
     padding-top: 20px;
     float: right;
+}
+.res {
+    background-color: rgba(149, 160, 224, 0.527);
+    margin-top: 13%;
+    border-style: dashed;
+    padding: 20px;
 }
 </style>
