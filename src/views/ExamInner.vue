@@ -1,9 +1,9 @@
 <template>
     <el-progress :percentage="percentage" :color="customColors">{{ "还剩" + hoursLeft + "小时" + minutesLeft + "分钟" }}</el-progress>
-    <Select :info="select"/>
-    <Fill :info="fill"/>
-    <Fix :info="fix"/>
-    <Coding :info="coding"/>
+    <Select :info="info" v-for="info in selects" :key="info"/>
+    <Fill :info="info" v-for="info in fills" :key="info"/>
+    <Fix :info="info" v-for="info in fixs" :key="info"/>
+    <Coding :info="info" v-for="info in codings" :key="info"/>
 </template>
 
 <script>
@@ -24,10 +24,10 @@ export default {
     },
     data() {
         return {
-            select: this.$store.state.select[0],
-            fill: this.$store.state.fill[0],
-            fix: this.$store.state.fix[0],
-            coding: this.$store.state.coding[0],
+            selects: this.$store.state.select,
+            fills: this.$store.state.fill,
+            fixs: this.$store.state.fix,
+            codings: this.$store.state.coding,
             examConf: this.getExam(this.$route.params.id),
             customColors: [
                 {color: '#f56c6c', percentage: 20},

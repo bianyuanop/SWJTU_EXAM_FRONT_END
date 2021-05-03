@@ -27,7 +27,7 @@ export default {
     },
     methods: {
         direct2exam: function() {
-            return null;
+            window.location = '/exam/' + this.exam.id;
         }
     }
 
