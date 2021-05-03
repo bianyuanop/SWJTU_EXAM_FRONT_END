@@ -1,23 +1,22 @@
 <template>
     <div class="cards">
         <div v-for="exam in exams" :key="exam">
-            {{ exam.describe }}
+            <Card :exam="exam"/>
         </div>
     </div>
 </template>
 
 <script>
+import Card from '@/components/exam/card.vue'
 export default {
     name: "Exam",
     data() {
         return {
-            exams: [
-                {
-                    id: 1,
-                    describe: "Hello, word"
-                }
-            ]
+            exams: this.$store.state.exams
         }
+    },
+    components: {
+        Card
     }
 }
 </script>

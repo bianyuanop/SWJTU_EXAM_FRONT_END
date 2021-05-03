@@ -1,20 +1,37 @@
 
 <template>
 <el-card class="box-card">
-  <template #header>
     <div class="card-header">
-      <span>{{ exam.title }}</span>
-      <el-button class="button" type="text">开始考试</el-button>
+      <h1>{{ exam.describe }}</h1>
+      <el-button class="button" type="text" @click="direct2exam">开始考试</el-button>
     </div>
-  </template>
-  <div v-for="o in 4" :key="o" class="text item">
-    {{'List item ' + o }}
-  </div>
+    <div class="time">开始时间: {{ start_time }}</div> 
+    <div class="duration">结束时间: {{ end_time }}</div> 
 </el-card>
 </template>
 
 <script>
-  
+export default {
+    name: "Card",
+    props: ['exam'],
+    computed: {
+        start_time(){
+            return this.exam.start_time.getMonth() + "月" + this.exam.start_time.getDay() + "日 " + this.exam.start_time.toString().slice(15,24);
+        },
+        end_time() {
+            var cur = new Date(this.exam.start_time); 
+            cur.setHours(this.exam.start_time.getHours() + this.exam.duration.getHours());
+            cur.setMinutes(this.exam.start_time.getMinutes() + this.exam.duration.getMinutes());
+            return cur.getMonth() + "月" + cur.getDay() + "日 " + cur.toString().slice(15,24);
+        }
+    },
+    methods: {
+        direct2exam: function() {
+            return null;
+        }
+    }
+
+}
 </script>
 
 <style>
@@ -22,17 +39,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-  }
-    
-  .text {
-    font-size: 14px;
-  }
-
-  .item {
-    margin-bottom: 18px;
-  }
-
-  .box-card {
-    width: 480px;
-  }
+}
+.box-card {
+    display: flex;
+    flex-direction: column;
+}
+ 
 </style>

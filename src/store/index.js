@@ -14,7 +14,8 @@ export default createStore({
     ],
     exams: [
       {
-        exam_id: 1,
+        id: 1,
+        describe: "Exam for class 1",
         start_time: new Date(2020, 5, 5, 10, 0, 0),
         duration: new Date(0, 0, 0, 2, 0, 0),
         allow: [
@@ -77,8 +78,8 @@ export default createStore({
     fix: [
       {
         id: 1, 
-        describe: "following code have something wrong, please fix it\n\
-        #include <iostream>\n\
+        describe: "following code have something wrong, please fix it",
+        codePiece:"#include <iostream>\n\
         using namespace std;\n\
         int main() {\n\
           cout << \"Hello, world\" << endl\n\

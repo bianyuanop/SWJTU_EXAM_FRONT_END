@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Exam from '../views/Exam.vue'
+import ExamInner from '../views/ExamInner.vue'
 
 const routes = [
   {
@@ -24,7 +25,13 @@ const routes = [
     path: '/exams',
     name : 'Exams',
     component: Exam
-  }
+  },
+  {
+    path: '/exam/:id',
+    name : 'Exam',
+    component: ExamInner
+  },
+
 ]
 
 const router = createRouter({
