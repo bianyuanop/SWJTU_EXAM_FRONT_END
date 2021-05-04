@@ -15,6 +15,8 @@
 
 <script>
 import { defineComponent, ref } from 'vue'
+import $ from 'jquery'
+
 export default defineComponent ({
     name: "Fix",
     props: ['info'],
@@ -22,6 +24,12 @@ export default defineComponent ({
         return {
             fixRes: ref('')
         }
+    },
+    mounted: function() {
+        var globalThis = this;
+        $('.answer-sheet > .el-textarea > textarea').on('keydown', function() {
+            globalThis.$parent.answerSheet.fix[globalThis.info.id] = globalThis.fixRes;
+        })
     }
 })
 </script>

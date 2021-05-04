@@ -7,13 +7,20 @@
 
 <script>
 import { defineComponent, ref } from 'vue'
+import $ from 'jquery'
 export default defineComponent({
     name: "Fill",
     props: ['info'],
-    setup() {
+    setup: function() {
         return {
             input: ref('')
         }
+    },
+    mounted: function() {
+        var globalThis = this;
+        $('.el-input__inner').on('change', function() {
+            globalThis.$parent.answerSheet.fill[globalThis.info.id] = globalThis.input;
+        })
     }
 })
 </script>

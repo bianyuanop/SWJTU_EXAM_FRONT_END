@@ -86,7 +86,8 @@ export default createStore({
           return 0;\n\
         }\n"
       }
-    ]
+    ],
+    answerSheet: {}
   },
   mutations: {
     addUser(state, payload) {
@@ -98,6 +99,9 @@ export default createStore({
       state.users.push(
         {adminname: payload.adminname, password: payload.password}
       )
+    },
+    addAnswerSheet(state, payload) {
+      state.answerSheet[state.username] = payload.answerSheet;
     }
   },
   actions: {

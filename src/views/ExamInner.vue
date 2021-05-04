@@ -1,6 +1,6 @@
 <template>
     <el-progress :percentage="percentage" :color="customColors">{{ "还剩" + hoursLeft + "小时" + minutesLeft + "分钟" }}</el-progress>
-    <Select :info="info" v-for="info in selects" :key="info"/>
+    <Select :info="info" ref="selRes" v-for="info in selects" :key="info"/>
     <Fill :info="info" v-for="info in fills" :key="info"/>
     <Fix :info="info" v-for="info in fixs" :key="info"/>
     <Coding :info="info" v-for="info in codings" :key="info"/>
@@ -16,6 +16,7 @@ import Fix from '@/components/exam/fix.vue'
 import Coding from '@/components/exam/coding.vue'
 import Fill from '@/components/exam/fill.vue'
 
+import $ from 'jquery'
 export default {
     name: "ExamInner",
     components: {
@@ -25,6 +26,42 @@ export default {
         Coding
     },
     mounted: function() {
+        var id;
+        for(let i=0; i<this.selects.length; i++) {
+            id = this.selects[i].id;
+            this.answerSheet.select[id] = '';
+        }
+        for(let i=0; i<this.fills.length; i++) {
+            id = this.fills[i].id;
+            this.answerSheet.fill[id] = '';
+        }
+        for(let i=0; i<this.fixs.length; i++) {
+            id = this.fixs[i].id;
+            this.answerSheet.fix[id] = '';
+        }
+        for(let i=0; i<this.codings.length; i++) {
+            id = this.codings[i].id;
+            this.answerSheet.coding[id] = '';
+        }
+        console.log(this.answerSheet);
+
+        $('textarea').each(function() {
+            this.addEventListener('keydown', function(e) {
+                if (e.key == 'Tab') {
+                    e.preventDefault();
+                    var start = this.selectionStart;
+                    var end = this.selectionEnd;
+
+                    // set textarea value to: text before caret + tab + text after caret
+                    this.value = this.value.substring(0, start) +
+                    "\t" + this.value.substring(end);
+
+                    // put caret at right position again
+                    this.selectionStart =
+                    this.selectionEnd = start + 1;
+                }
+            })
+        })
     },
     data() {
         return {
@@ -39,7 +76,13 @@ export default {
                 {color: '#5cb87a', percentage: 60},
                 {color: '#1989fa', percentage: 80},
                 {color: '#6f7ad3', percentage: 100}
-            ]
+            ],
+            answerSheet: {
+                'select': {}, 
+                'fill': {}, 
+                'fix': {}, 
+                'coding': {}
+            }
         }
     },
     methods: {
@@ -51,7 +94,12 @@ export default {
             return null;
         },
         commit: function() {
-            console.log("Committing...");
+            this.$store.commit({
+                type: 'addAnswerSheet',
+                answerSheet: this.answerSheet
+            });
+            alert("交卷成功")
+            window.location = '/';
         }
     },
     computed: {
