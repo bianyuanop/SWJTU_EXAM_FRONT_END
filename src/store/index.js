@@ -87,7 +87,12 @@ export default createStore({
         }\n"
       }
     ],
-    answerSheet: {}
+    answerSheet: {
+      1: {
+        A: "hello"
+      }
+    },
+    score: {}
   },
   mutations: {
     addUser(state, payload) {
@@ -101,7 +106,16 @@ export default createStore({
       )
     },
     addAnswerSheet(state, payload) {
-      state.answerSheet[state.username] = payload.answerSheet;
+      if(state.answerSheet[payload.id] == undefined) state.answerSheet[payload.id] = {}
+      state.answerSheet[payload.id][state.username] = payload.answerSheet;
+    },
+    adminLogin(state, payload) {
+      state.admin_username = payload.username;
+      state.admin_password = payload.password;
+    },
+    userLogin(state, payload) {
+      state.username = payload.username;
+      state.password = payload.password;
     }
   },
   actions: {

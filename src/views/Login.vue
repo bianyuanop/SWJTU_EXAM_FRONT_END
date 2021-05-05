@@ -38,6 +38,11 @@ export default defineComponent ({
                 var pass = await this.checkPassword(this.username, this.password);
                 if(pass) {
                     $('.el-alert--success').show();
+                    this.$store.commit({
+                        type:'userLogin',
+                        username: this.username,
+                        password: this.password
+                    })
                     await this.sleep(500);
                     window.location = '/';
                 }else {

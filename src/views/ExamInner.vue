@@ -96,7 +96,8 @@ export default {
         commit: function() {
             this.$store.commit({
                 type: 'addAnswerSheet',
-                answerSheet: this.answerSheet
+                answerSheet: this.answerSheet,
+                id: this.$route.params.id
             });
             alert("交卷成功")
             window.location = '/';

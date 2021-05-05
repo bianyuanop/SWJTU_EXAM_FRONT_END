@@ -7,7 +7,7 @@
 <script>
 import { defineComponent, ref } from 'vue'
 export default defineComponent ({
-    name: "Login",
+    name: "AdminLogin",
     data() {
     },
     setup() {
@@ -18,8 +18,26 @@ export default defineComponent ({
     },
     methods: {
         login: function() {
+            var verified = this.checkState();
+            if(verified) {
+                alert("登陆成功.");
+                this.$store.commit({
+                    type: 'adminLogin',
+                    password: this.password,
+                    username: this.username
+                })
+                window.location = '/admin/exams'
+            }else {
+                alert("登陆失败.");
+            }
         },
-        checkState: function() {
+        checkState: async function() {
+            var admins = this.$store.state.admins;
+            for(let i=0; i<admins.length; i++) {
+                if(admins[i].adminname == this.username && admins[i].password == this.password) return true;
+            }
+
+            return false;
         }
     }
 })
