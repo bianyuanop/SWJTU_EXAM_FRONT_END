@@ -15,6 +15,7 @@ export default createStore({
     exams: [
       {
         id: 1,
+        paperId: 1,
         describe: "Exam for class 1",
         start_time: new Date(2020, 5, 5, 10, 0, 0),
         duration: new Date(0, 0, 0, 2, 0, 0),
@@ -23,15 +24,14 @@ export default createStore({
         ] 
       }
     ],
-    testPapers: [
-      {
-        id: 1,
-        select: [1, 2],
-        fill: [1,2],
-        fix: [1],
-        coding: [1]
+    testPapers: {
+      1: {
+          select: [1, 2],
+          fill: [1,2],
+          fix: [1],
+          coding: [1]
       }
-    ],
+    },
     select: [
       {
         id: 1,
@@ -89,16 +89,51 @@ export default createStore({
     ],
     answerSheet: {
       1: {
-        A: "hello"
+        chan: {
+          select: {
+            1: "A",
+            2: "A",
+          },
+          fix: {
+            1: "A",
+          },
+          fill: {
+            1: "PC",
+            2: "MEM",
+          },
+          coding: {
+            1: "print('Hello, world'",
+          }
+        }
       }
     },
-    score: {}
+    score: {
+      1: {
+        chan: {
+          fix: {
+            1: 20, 
+          },
+          coding: {
+            1: 30, 
+          },
+          fill: {
+            1: 100, 
+            2: 50
+          },
+          select: {
+            1: 100, 
+            2: 50
+          },
+        }
+      }
+    }
   },
   mutations: {
     addUser(state, payload) {
       state.users.push(
         {password: payload.password, username: payload.username, student_id: payload.student_id}
       )
+      console.log(state.users);
     },
     addAdmin(state, payload) {
       state.users.push(
@@ -107,7 +142,9 @@ export default createStore({
     },
     addAnswerSheet(state, payload) {
       if(state.answerSheet[payload.id] == undefined) state.answerSheet[payload.id] = {}
+      console.log(state.username);
       state.answerSheet[payload.id][state.username] = payload.answerSheet;
+      console.log(state.answerSheet);
     },
     adminLogin(state, payload) {
       state.admin_username = payload.username;

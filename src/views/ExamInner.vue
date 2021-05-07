@@ -65,10 +65,6 @@ export default {
     },
     data() {
         return {
-            selects: this.$store.state.select,
-            fills: this.$store.state.fill,
-            fixs: this.$store.state.fix,
-            codings: this.$store.state.coding,
             examConf: this.getExam(this.$route.params.id),
             customColors: [
                 {color: '#f56c6c', percentage: 20},
@@ -78,9 +74,9 @@ export default {
                 {color: '#6f7ad3', percentage: 100}
             ],
             answerSheet: {
-                'select': {}, 
-                'fill': {}, 
-                'fix': {}, 
+                'select': {},
+                'fill': {},
+                'fix': {},
                 'coding': {}
             }
         }
@@ -100,7 +96,7 @@ export default {
                 id: this.$route.params.id
             });
             alert("交卷成功")
-            window.location = '/';
+//            window.location = '/';
         }
     },
     computed: {
@@ -121,7 +117,58 @@ export default {
             var cur = new Date();
             var minutesLeft = 60 - cur.getMinutes();
             return minutesLeft;
-        }
+        },
+        testPaperId() {
+            return this.examConf.paperId;
+        },
+        selects() {
+            var res = [];
+            var selectStore = this.$store.state.select;
+            var selectIds = this.$store.state.testPapers[this.testPaperId].select;
+
+            for(let i=0; i<selectStore.length; i++) {
+                for(let j=0; j<selectIds.length; j++) {
+                    if(selectStore[i].id == selectIds[j]) res.push(selectStore[i]);
+                }
+            }
+            return res;
+        },
+        fixs() {
+            var res = [];
+            var fixStore = this.$store.state.fix;
+            var fixIds = this.$store.state.testPapers[this.testPaperId].fix;
+
+            for(let i=0; i<fixStore.length; i++) {
+                for(let j=0; j<fixIds.length; j++) {
+                    if(fixStore[i].id == fixIds[j]) res.push(fixStore[i]);
+                }
+            }
+            return res;
+        },
+        fills() {
+            var res = [];
+            var fillStore = this.$store.state.fill;
+            var fillIds = this.$store.state.testPapers[this.testPaperId].fill;
+
+            for(let i=0; i<fillStore.length; i++) {
+                for(let j=0; j<fillIds.length; j++) {
+                    if(fillStore[i].id == fillIds[j]) res.push(fillStore[i]);
+                }
+            }
+            return res;
+        },
+        codings() {
+            var res = [];
+            var codingStore = this.$store.state.coding;
+            var codingIds = this.$store.state.testPapers[this.testPaperId].coding;
+
+            for(let i=0; i<codingStore.length; i++) {
+                for(let j=0; j<codingIds.length; j++) {
+                    if(codingStore[i].id == codingIds[j]) res.push(codingStore[i]);
+                }
+            }
+            return res;
+        },
     }
 }
 </script>

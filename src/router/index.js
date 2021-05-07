@@ -51,7 +51,7 @@ const routes = [
     component: JudgeList
   },
   {
-    path: '/admin/judgedetail',
+    path: '/admin/judgedetail/:examId/:username',
     name : 'JudgeDetail',
     component: JudgeDetail
   },

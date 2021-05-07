@@ -4,7 +4,7 @@
     type="success">
   </el-alert>
     <el-input placeholder="Please input" v-model="username"></el-input>
-    <el-input placeholder="Please input" v-model="student_id"></el-input>
+    <el-input placeholder="Please input student id" v-model="student_id"></el-input>
     <el-input placeholder="Please input password" v-model="password" show-password></el-input>
     <el-button round @click="register">Register</el-button>
 </template>
