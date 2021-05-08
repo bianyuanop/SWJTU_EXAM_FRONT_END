@@ -43,6 +43,7 @@ export default defineComponent ({
                         username: this.username,
                         password: this.password
                     })
+                    window.sessionStorage.setItem('username', this.username);
                     await this.sleep(500);
                     window.location = '/';
                 }else {

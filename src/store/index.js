@@ -21,11 +21,23 @@ export default createStore({
         duration: new Date(0, 0, 0, 2, 0, 0),
         allow: [
           "2019112256",
-        ] 
+        ],
+        percentage: {
+          fill: 0.2,
+          fix: 0.2,
+          coding: 0.4,
+          select: 0.2
+        }
       }
     ],
     testPapers: {
       1: {
+          select: [1, 2],
+          fill: [1,2],
+          fix: [1],
+          coding: [1]
+      },
+      2: {
           select: [1, 2],
           fill: [1,2],
           fix: [1],
@@ -84,7 +96,8 @@ export default createStore({
         int main() {\n\
           cout << \"Hello, world\" << endl\n\
           return 0;\n\
-        }\n"
+        }\n",
+        answer: "No answer"
       }
     ],
     answerSheet: {
@@ -103,13 +116,29 @@ export default createStore({
           },
           coding: {
             1: "print('Hello, world'",
-          }
-        }
+          },
+        },
+        user: {
+          select: {
+            1: "A",
+            2: "A",
+          },
+          fix: {
+            1: "A",
+          },
+          fill: {
+            1: "PC",
+            2: "MEM",
+          },
+          coding: {
+            1: "print('Hello, world'",
+          },
+        },
       }
     },
     score: {
       1: {
-        chan: {
+        user: {
           fix: {
             1: 20, 
           },

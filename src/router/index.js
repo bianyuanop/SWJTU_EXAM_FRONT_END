@@ -8,6 +8,9 @@ import AdminLogin from '../views/admin/Login.vue'
 import AdminExams from '../views/admin/Exams.vue'
 import JudgeDetail from '../views/admin/JudgeDetail.vue'
 import JudgeList from '../views/admin/JudgeList.vue'
+import AdminHome from '../views/admin/Home.vue'
+import Publish from '../views/admin/Publish.vue'
+import Paper from '../views/admin/Paper.vue'
 
 const routes = [
   {
@@ -55,7 +58,21 @@ const routes = [
     name : 'JudgeDetail',
     component: JudgeDetail
   },
-
+  {
+    path: '/admin',
+    name : 'AdminHome',
+    component: AdminHome
+  },
+  {
+    path: '/admin/publish',
+    name : 'Publish',
+    component: Publish
+  },
+  {
+    path: '/admin/paper-gen',
+    name : 'Paper',
+    component: Paper
+  },
 ]
 
 const router = createRouter({
