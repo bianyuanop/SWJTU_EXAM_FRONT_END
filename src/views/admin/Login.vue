@@ -26,7 +26,7 @@ export default defineComponent ({
                     password: this.password,
                     username: this.username
                 })
-                window.location = '/admin/exams'
+                window.location = '/admin'
             }else {
                 alert("登陆失败.");
             }

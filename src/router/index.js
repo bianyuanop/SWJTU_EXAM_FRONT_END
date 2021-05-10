@@ -11,6 +11,7 @@ import JudgeList from '../views/admin/JudgeList.vue'
 import AdminHome from '../views/admin/Home.vue'
 import Publish from '../views/admin/Publish.vue'
 import Paper from '../views/admin/Paper.vue'
+import Score from '../views/Score.vue'
 
 const routes = [
   {
@@ -72,6 +73,11 @@ const routes = [
     path: '/admin/paper-gen',
     name : 'Paper',
     component: Paper
+  },
+  {
+    path: '/score/:username',
+    name : 'Score',
+    component: Score
   },
 ]
 

@@ -3,7 +3,7 @@
 <el-card class="box-card">
     <div class="card-header">
       <h1>{{ exam.describe }}</h1>
-      <el-button class="button" type="text" @click="direct2exam">开始考试</el-button>
+      <el-button class="start-exam" type="text" @click="direct2exam">开始考试</el-button>
     </div>
     <div class="time">开始时间: {{ start_time }}</div> 
     <div class="duration">结束时间: {{ end_time }}</div> 

@@ -27,6 +27,7 @@
 
 <script>
 import Card from '@/components/exam/card.vue'
+import $ from 'jquery'
 export default {
     name: "Publish",
     data() {
@@ -59,15 +60,29 @@ export default {
             duration.setMinutes(minutes);
             var exam = {
                 id: 1,
-                descirbe: this.input,
+                describe: this.input,
                 start_time: this.examDate[0],
                 duration: duration
             }
             console.log(exam);
             this.exams.push(exam);
+            
+            var globalThis = this;
+            this.sleep(100).then(() => {
+                globalThis.hideStart();
+            });
 
             //alert("Exam added.");
+        },
+        hideStart: function() {
+            $('.start-exam').hide();
+        },
+        sleep: function (ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
         }
+    },
+    mounted: function() {
+        $('.start-exam').hide();
     }
 }
 </script>

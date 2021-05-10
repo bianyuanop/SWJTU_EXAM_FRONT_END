@@ -138,6 +138,23 @@ export default createStore({
     },
     score: {
       1: {
+        chan: {
+          fix: {
+            1: 20, 
+          },
+          coding: {
+            1: 30, 
+          },
+          fill: {
+            1: 100, 
+            2: 50
+          },
+          select: {
+            1: 100, 
+            2: 50
+          },
+          total: 63.4
+        },
         user: {
           fix: {
             1: 20, 
@@ -153,6 +170,7 @@ export default createStore({
             1: 100, 
             2: 50
           },
+          total: 63.4
         }
       }
     }
